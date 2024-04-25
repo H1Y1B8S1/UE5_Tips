@@ -1,0 +1,46 @@
+(1) First make sure your current directory is your .ssh folder.
+Syntax for generating unique ssh key for ann account is:
+
+		$ ssh-keygen -t rsa -C "h1y1b8s1@gmail.com" -f "github-H1Y1B8S1"
+
+2) start SSH Agent and Add SSH keys for all accounts.
+
+		$ eval `ssh-agent -s`
+
+		$ ssh-add ~/.ssh/github-H1Y1B8S1
+
+3) Add SSH public key to the Github
+	Paste the public key on Github
+	Sign in to Github Account
+	Goto Settings > SSH and GPG keys > New SSH Key
+	Paste your copied public key and give it a Title of your choice.
+
+4) Create a Config File and Make Host Entries
+	If config file not already exists then create one (make sure you are in ~/.ssh directory)
+
+		$ touch config
+
+5) Now we need to add these lines to the file, each block corresponding to each account we created earlier.
+
+     #office account
+     Host github.com-SiddharthsinhDodiya
+          HostName github.com
+          User git
+          IdentityFile ~/.ssh/github-SiddharthsinhDodiya
+
+     #personal account
+     Host github.com-H1Y1B8S1
+          HostName github.com
+          User git
+          IdentityFile ~/.ssh/github-H1Y1B8S1
+
+
+6) Cloning GitHub repositories using different accounts
+
+ git clone git@github.com-{your-username}:{owner-user-name}/{the-repo-name}.git
+
+ [e.g.]         $ git clone git@github.com-H1Y1B8S1:H1Y1B8S1/Cpp.git
+
+
+
+Thats all.
